@@ -9,31 +9,33 @@ class HomePage extends StatelessWidget {
   static const routeName = "/home";
 
   HomeController _homeController;
+
   @override
   Widget build(BuildContext context) {
-    _homeController = HomeController();
+    Get.put(HomeController());
+    _homeController = Get.find();
     log("1er build: StatelessWidget");
     return Scaffold(
       appBar: AppBar(
         title: Text("Hola Mundo"),
         actions: [
           GetBuilder<HomeController>(
-              init: _homeController,
-              builder: (_){
-            log("3er build: GetBuilder<HomeController>");
-            return IconButton(icon: Text("${_.counter}"), onPressed: (){
-
-            });
-          })
+             // init: _homeController,
+              builder: (_) {
+                log("3er build: GetBuilder<HomeController>");
+                return IconButton(icon: Text("${_.counter}"), onPressed: () {});
+              })
         ],
       ),
       body: Column(
         children: [
           GetBuilder<HomeController>(
             init: _homeController,
-            builder: (_){
+            builder: (_) {
               log("2do build: GetBuilder<HomeController>");
-              return Container(child: Text("Contador ${_.counter}"),);
+              return Container(
+                child: Text("Contador ${_.counter}"),
+              );
             },
           ),
           Row(
@@ -43,11 +45,29 @@ class HomePage extends StatelessWidget {
             ],
           ),
           GetBuilder<HomeController>(
-            id:"timer",
+              id: "timer",
+              init: _homeController,
+              builder: (_) {
+                return Text(_.timePeriodic);
+              }),
+          Container(
+            padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  color: Colors.blue.withOpacity(0.3), borderRadius: BorderRadius.all(Radius.circular(10))),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Uso de variables observables"),
+              )),
+          GetBuilder<HomeController>(
               init: _homeController,
               builder: (_){
-               return  Text(_.timePeriodic);
-              })
+                log("Observable build: GetBuilder<HomeController>");
+            return Obx(()=> Text("Obs: ${_.timePeriodic2.value}"));
+          }),
+
+          ElevatedButton(onPressed: (){
+            Get.toNamed("/detail");
+          }, child: Text("Detail"))
         ],
       ),
     );

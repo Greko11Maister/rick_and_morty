@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rick_and_morty2/features/app/presentation/pages/detail/detail_page.dart';
 import 'package:rick_and_morty2/features/app/presentation/pages/home/home_page.dart';
 class App extends StatelessWidget {
   @override
@@ -13,6 +14,7 @@ class App extends StatelessWidget {
       initialRoute: HomePage.routeName,
       routes: {
         HomePage.routeName: (context) => HomePage(),
+        DetailPage.routeName: (context) => DetailPage()
       },
     );
   }
