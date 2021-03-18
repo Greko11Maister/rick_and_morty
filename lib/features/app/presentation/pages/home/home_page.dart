@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rick_and_morty2/features/app/presentation/controllers/home_controller.dart';
+import 'package:rick_and_morty2/features/app/presentation/pages/home2/home_page_2.dart';
 
 // ignore: must_be_immutable
 class HomePage extends StatelessWidget {
@@ -67,7 +68,10 @@ class HomePage extends StatelessWidget {
 
           ElevatedButton(onPressed: (){
             Get.toNamed("/detail");
-          }, child: Text("Detail"))
+          }, child: Text("Detail")),
+          ElevatedButton(onPressed: (){
+            Get.toNamed(HomePage2.routeName);
+          }, child: Text("Home 2"))
         ],
       ),
     );
