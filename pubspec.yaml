@@ -30,6 +30,7 @@ dependencies:
   flutter_svg: ^0.19.3
   equatable: ^2.0.0
   dartz: ^0.9.1
+  dio: ^4.0.0
 
 dev_dependencies:
   flutter_test:
