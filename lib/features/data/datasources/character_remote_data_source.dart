@@ -11,7 +11,9 @@ class CharacterRemoteDataSourceImpl extends ApiProvider implements CharacterRemo
   @override
   Future<List<CharacterModel>> list() async {
     try{
+      log("/character", name: "Api Provider");
       final res = await dio.get("/character");
+      log("${res.data}");
       return (res.data["results"] as List).map((json) => CharacterModel.fromJson(json)).toList();
     }catch(error){
       log("$error");

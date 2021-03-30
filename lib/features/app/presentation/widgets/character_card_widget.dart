@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:rick_and_morty2/features/domain/entities/character.dart';
 
 class CharacterCard extends StatelessWidget {
-  final String url;
+  final Character data;
 
-  CharacterCard({Key key, this.url = "https://cdn.pixabay.com/photo/2017/06/28/04/29/adult-2449725_960_720.jpg"})
+  CharacterCard({Key key, @required this.data})
       : super(key: key);
 
   @override
@@ -24,7 +25,7 @@ class CharacterCard extends StatelessWidget {
                 borderRadius: BorderRadius.vertical(
                   top: Radius.circular(20)
                 ),
-                child: Image.network(url)),
+                child: Image.network(data.image)),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
