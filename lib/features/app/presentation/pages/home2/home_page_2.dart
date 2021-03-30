@@ -4,9 +4,8 @@ import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:rick_and_morty2/features/app/presentation/controllers/character_controller.dart';
 import 'package:rick_and_morty2/features/app/presentation/widgets/character_card_widget.dart';
-import 'package:rick_and_morty2/features/data/datasources/character_remote_data_source.dart';
-import 'package:rick_and_morty2/features/data/repositories/character_repository_impl.dart';
-import 'package:rick_and_morty2/features/domain/usecases/get_characters_use_case.dart';
+
+import '../../../../../injection_container.dart';
 
 class HomePage2 extends StatelessWidget {
   static const routeName = "/home_page2";
@@ -14,9 +13,7 @@ class HomePage2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _controller = CharacterController(
-        getCharactersUseCase:
-            GetCharactersUseCase(CharacterRepositoryImpl(remoteDataSource: CharacterRemoteDataSourceImpl())));
+    _controller = CharacterController(getCharactersUseCase: sl());
 
     return Scaffold(
       appBar: AppBar(
@@ -51,7 +48,6 @@ class HomePage2 extends StatelessWidget {
               },
               builder: (_) {
                 return Obx(() {
-
                   if (_.isLoading.value) {
                     return CircularProgressIndicator();
                   }

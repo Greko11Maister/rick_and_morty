@@ -25,7 +25,7 @@ class CharacterCard extends StatelessWidget {
                 borderRadius: BorderRadius.vertical(
                   top: Radius.circular(20)
                 ),
-                child: Image.network(data.image)),
+                child: Image.network(data.image, fit: BoxFit.fill,width: MediaQuery.of(context).size.width,)),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
@@ -40,12 +40,12 @@ class CharacterCard extends StatelessWidget {
                   Icon(
                     MdiIcons.moonFull,
                     size: 12,
-                    color: Colors.green,
+                    color: _colorStatus(),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 6),
                     child: Text(
-                      "Alive - Human",
+                      "${data.status} - ${data.species}",
                       style: TextStyle(color: Colors.white),
                     ),
                   )
@@ -58,7 +58,7 @@ class CharacterCard extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 8.0),
-              child: Text("Intermensional Cable", style: TextStyle(color: Colors.white, fontSize: 16)),
+              child: Text(data.location.name, style: TextStyle(color: Colors.white, fontSize: 16)),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0).copyWith(top: 20, bottom: 4),
@@ -72,5 +72,18 @@ class CharacterCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Color _colorStatus(){
+    switch(data.status.toLowerCase()){
+      case "alive":
+        return Colors.green;
+        break;
+      case "dead":
+        return Colors.red;
+        break;
+      default:
+        return Colors.grey;
+    }
   }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'features/app/presentation/app.dart';
-
-void main() {
+import 'injection_container.dart' as di;
+void main() async {
+  await di.init();
   runApp(App());
 }
 
